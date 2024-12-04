@@ -1,0 +1,100 @@
+body {
+    background-color: #f0f8ff;
+    font-family: 'Verdana', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.main-container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.difficulty-selector {
+    margin-bottom: 15px;
+}
+
+.sudoku-board {
+    display: grid;
+    grid-template-columns: repeat(9, 50px);
+    gap: 1.5px;
+    margin-bottom: 15px;
+}
+
+.sudoku-cell {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #999;
+    text-align: center;
+    font-size: 18px;
+    line-height: 48px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.sudoku-cell.preset {
+    background-color: #d0e7f9;
+}
+
+.sudoku-cell.selected {
+    background-color: #cceeff;
+}
+
+.sudoku-cell.conflict {
+    background-color: #ffcccc;
+}
+
+.control-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+button {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: #007acc;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #005f9e;
+}
+
+@media (max-width: 600px) {
+    .main-container {
+        width: 90%;
+        padding: 15px;
+    }
+    .sudoku-board {
+        grid-template-columns: repeat(9, 30px);
+    }
+    .sudoku-cell {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+        line-height: 28px;
+    }
+    button {
+        padding: 8px;
+        font-size: 12px;
+    }
+}

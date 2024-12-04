@@ -1,0 +1,201 @@
+/* styles.css */
+
+/* CSS Variables for easy theming */
+:root {
+    --background-color: #1a1a1a;
+    --primary-color: #4d90fe;
+    --primary-hover-color: #357ae8;
+    --secondary-color: #2e2e2e;
+    --text-color: #ffffff;
+    --disabled-color: #777777;
+    --player-color: #1e90ff;
+    --computer-color: #ff4500;
+    --winning-line-color: #00ff7f;
+    --font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+h1 {
+    margin-bottom: 30px;
+    font-size: 36px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.cell {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    font-size: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.cell::before {
+    content: '';
+    display: block;
+    padding-top: 100%; /* Maintain aspect ratio */
+}
+
+.cell-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    animation: fadeInZoom 0.3s ease-in-out;
+}
+
+.cell.disabled {
+    cursor: default;
+    color: var(--disabled-color);
+}
+
+.cell:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.cell:active {
+    transform: scale(0.98);
+}
+
+.winning-cell {
+    background-color: var(--winning-line-color) !important;
+    animation: glow 1s infinite alternate;
+}
+
+.predicted-cell {
+    background-color: rgba(255, 69, 0, 0.3); /* Semi-transparent red for prediction */
+}
+
+.controls {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.controls label {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.controls select {
+    font-size: 16px;
+    padding: 8px 12px;
+    margin-right: 20px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: border-color 0.3s ease;
+}
+
+.controls select:focus {
+    outline: none;
+    border-color: var(--primary-hover-color);
+    box-shadow: 0 0 5px var(--primary-hover-color);
+}
+
+button {
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-image: linear-gradient(to right, var(--primary-color), var(--primary-hover-color));
+    color: var(--text-color);
+    transition: background-image 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+    background-image: linear-gradient(to right, var(--primary-hover-color), var(--primary-color));
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 500px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    .cell {
+        font-size: 60px;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .controls label,
+    .controls select,
+    button {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+    .controls select,
+    button {
+        margin-right: 0;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInZoom {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 10px var(--winning-line-color); }
+    to { box-shadow: 0 0 20px var(--winning-line-color); }
+}
